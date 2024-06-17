@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dentha_Antara\\source\\repos\\FP_SD\\FP_SD\\FP_SD.csproj",
+      "projectUniqueName": "C:\\DENTHA_PUNYA\\smster_2\\strukdat\\FP\\FP_SD\\FP_SD\\FP_SD.csproj",
       "projectName": "FP_SD",
-      "projectPath": "C:\\Users\\Dentha_Antara\\source\\repos\\FP_SD\\FP_SD\\FP_SD.csproj",
+      "projectPath": "C:\\DENTHA_PUNYA\\smster_2\\strukdat\\FP\\FP_SD\\FP_SD\\FP_SD.csproj",
       "packagesPath": "C:\\Users\\Dentha_Antara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dentha_Antara\\source\\repos\\FP_SD\\FP_SD\\obj\\",
+      "outputPath": "C:\\DENTHA_PUNYA\\smster_2\\strukdat\\FP\\FP_SD\\FP_SD\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

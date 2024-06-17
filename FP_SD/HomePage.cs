@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace FP_SD
 {
-
     public class HomePage
     {
         private Stack<int> transaksi;
+        private const int BatasPenarikanHarian = 100; // Contoh batas penarikan harian
 
         public HomePage()
         {
@@ -27,7 +27,7 @@ namespace FP_SD
                 Console.WriteLine("3. Penarikan");
                 Console.WriteLine("4. Tampilkan Transaksi");
                 Console.WriteLine("5. Keluar");
-                Console.Write("Masukkan pilihan [1/2/3/4]: ");
+                Console.Write("Masukkan pilihan [1/2/3/4/5]: ");
 
                 string input = Console.ReadLine();
 
@@ -83,12 +83,11 @@ namespace FP_SD
             }
         }
 
-
         private void TampilkanSaldo()
         {
             Console.Clear();
             Console.WriteLine("=== Tampilkan Saldo ===");
-            decimal saldo = HitungSaldo();
+            int saldo = HitungSaldo();
             Console.WriteLine($"Saldo Anda saat ini: Rp{saldo}");
         }
 
@@ -102,8 +101,16 @@ namespace FP_SD
                 Console.Write("Masukkan tanggal (DD/MM/YYYY): ");
                 if (DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime tanggal))
                 {
-                    if (HitungSaldo() >= jumlah)
+                    int totalPenarikanHariIni = HitungPenarikanHarian(tanggal);
+                    int sisa = BatasPenarikanHarian - (totalPenarikanHariIni + jumlah);
+
+                    if (totalPenarikanHariIni + jumlah > BatasPenarikanHarian)
                     {
+                        Console.WriteLine($"Penarikan gagal. Anda telah mencapai batas penarikan harian. Sisa batas penarikan hari ini: Rp{BatasPenarikanHarian - totalPenarikanHariIni}");
+                    }
+                    else if (HitungSaldo() >= jumlah)
+                    {
+                        Console.WriteLine($"sisa : {sisa}");
                         transaksi.Push(-jumlah, tanggal); // Menambahkan nilai negatif untuk menunjukkan penarikan
                         Console.WriteLine("Penarikan berhasil.");
                     }
@@ -111,6 +118,8 @@ namespace FP_SD
                     {
                         Console.WriteLine("Saldo tidak mencukupi untuk melakukan penarikan.");
                     }
+
+                    //Console.WriteLine($"Sisa batas penarikan hari ini: Rp{BatasPenarikanHarian - totalPenarikanHariIni}");
                 }
                 else
                 {
@@ -123,11 +132,25 @@ namespace FP_SD
             }
         }
 
-
-        private decimal HitungSaldo()
+        private int HitungPenarikanHarian(DateTime tanggal)
         {
-            decimal totalMenabung = 0;
-            decimal totalPenarikan = 0;
+            int totalPenarikan = 0;
+
+            foreach (var transaksi in transaksi.GetAllItems())
+            {
+                if (transaksi.Tanggal.Date == tanggal.Date && transaksi.Data < 0)
+                {
+                    totalPenarikan += Math.Abs(transaksi.Data);
+                }
+            }
+
+            return totalPenarikan;
+        }
+
+        private int HitungSaldo()
+        {
+            int totalMenabung = 0;
+            int totalPenarikan = 0;
 
             foreach (var transaksi in transaksi.GetAllItems())
             {
@@ -155,7 +178,7 @@ namespace FP_SD
             foreach (var transaksi in transaksiArray)
             {
                 string jenis = transaksi.Data > 0 ? "Menabung" : "Penarikan";
-                decimal jumlah = Math.Abs(transaksi.Data);
+                int jumlah = Math.Abs(transaksi.Data);
                 Console.WriteLine($"{transaksi.Tanggal.ToString("dd/MM/yyyy")}\t{jumlah}\t\t{jenis}");
             }
 
