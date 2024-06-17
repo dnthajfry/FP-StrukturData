@@ -110,7 +110,7 @@ namespace FP_SD
                     }
                     else if (HitungSaldo() >= jumlah)
                     {
-                        Console.WriteLine($"sisa : {sisa}");
+                        Console.WriteLine($"Sisa batas penarikan hari ini: Rp{sisa}");
                         transaksi.Push(-jumlah, tanggal); // Menambahkan nilai negatif untuk menunjukkan penarikan
                         Console.WriteLine("Penarikan berhasil.");
                     }
@@ -119,7 +119,6 @@ namespace FP_SD
                         Console.WriteLine("Saldo tidak mencukupi untuk melakukan penarikan.");
                     }
 
-                    //Console.WriteLine($"Sisa batas penarikan hari ini: Rp{BatasPenarikanHarian - totalPenarikanHariIni}");
                 }
                 else
                 {
