@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FP_StrukDat/1.0.0": {
+        "runtime": {
+          "FP_StrukDat.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FP_StrukDat/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
